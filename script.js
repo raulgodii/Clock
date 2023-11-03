@@ -9,8 +9,11 @@ window.onload = () => {
     resetClock.addEventListener("click", resetFunc);
 }
 
-function startFunc(){
+var minCont = 0
+var secCont = 0;
 
+function startFunc(){
+    setInterval(cont, 1000);
 }
 
 function stopFunc(){
@@ -19,4 +22,19 @@ function stopFunc(){
 
 function resetFunc(){
     
+}
+
+function cont(){
+    let seconds = secCont < 10 ? "0" + secCont : secCont;
+    let minutes = minCont < 10 ? "0" + minCont : minCont;
+    clock.innerHTML = minutes + ":" + seconds;
+
+    secCont++;
+    if(secCont == 60){
+        secCont = 0;
+        minCont++;
+    }
+    if(minCont == 60){
+        minCont = 0;
+    } 
 }
