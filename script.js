@@ -9,19 +9,29 @@ window.onload = () => {
     resetClock.addEventListener("click", resetFunc);
 }
 
-var minCont = 0
-var secCont = 0;
+var minCont = 0;
+var secCont = 1;
+var firstTime = true;
 
 function startFunc(){
-    setInterval(cont, 1000);
+    if(firstTime){
+        cont();
+        interval = setInterval(cont, 1000);
+        firstTime = false;
+    }
 }
 
 function stopFunc(){
-    
+    clearInterval(interval);
+    firstTime = true;
 }
 
 function resetFunc(){
-    
+    clearInterval(interval);
+    secCont = 1;
+    minCont = 0;
+    clock.innerHTML = "00:00";
+    firstTime = true;
 }
 
 function cont(){
